@@ -101,7 +101,7 @@
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <p>I’m a physician currently living in the Philippines. I love it here but I can't help thinking of my times <u>here</u> and recently <u>here</u>. I have a deep interest in investing and tech startups, especially those nurtured by YC Combinator. Recently, I’ve been focusing on learning Spanish to expand my horizons further.</p>
+            <p>I’m a physician currently living in the Philippines 🇵🇭. I love it here but I can't help thinking of my times <u>here</u> and recently <u>here</u>. I have a deep interest in investing and tech startups, especially those nurtured by YC Combinator. Recently, I’ve been focusing on learning Spanish to expand my horizons further.</p>
         <p>After completing my medical training and passing the PLAB 2 exam, I’ve been exploring various facets of medicine and technology. My professional journey has taken me from the UK to the Philippines, where I’ve been working for the past four years, honing my skills in outpatient, emergency, and ward settings.</p>
         <p>I'm also an avid reader, currently delving into "The Beginning of Infinity" by David Deutsch. My love for learning extends to developing effective study tools and apps to help others excel in their academic endeavors.</p>
     </section>
@@ -110,6 +110,19 @@
         <section id="projects">
             <h2>Projects</h2>
             <p>On the side, I [Your Side Projects/Interests]. I also created [Another Project], a community of [Project Description].</p>
+              <h3>Basket: Personalized Learning App</h3>
+        <p>Basket is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies. Check out the demo on YouTube to see how Basket helped me pass PLAB 1 and PLAB 2.</p>
+        <h3>Notion Templates on Gumroad</h3>
+        <p>I’ve been selling Notion templates on Gumroad, which have been crafted to enhance productivity and organization. These templates have been invaluable in my journey through medical school and beyond.</p>
+        <h3>Supabase Database Schema</h3>
+        <p>For those interested in the technical aspects of Basket, here’s the current schema of our Supabase database:</p>
+        <ul>
+            <li>users table: users_id, email</li>
+            <li>workspace: id, title</li>
+            <li>topics table: id, title, basket_id (foreign key), workspace_id (foreign key)</li>
+            <li>baskets table: id, name, description, workspace_id (foreign key)</li>
+            <li>concepts table: id, topics_id (foreign key), text</li>
+        </ul>
         </section>
 
         <section id="work">
@@ -120,11 +133,16 @@
         <section id="contact">
             <h2>Contact</h2>
             <p>Get in touch with me at: [Your Contact Information]</p>
+            <p>I’d love to hear from you! Whether you have questions, feedback, or just want to connect, feel free to reach out.</p>
+        <p>Email: <a href="mailto:anly40@gmail.com">anly40@gmail.com</a></p>
+        <p>Twitter: <a href="https://x.com/theokayestMS" target="_blank">@Carl</a></p>
+        <p>YouTube: <a href="http://www.youtube.com/@carlortiz2695" target="_blank">Carl’s Channel</a></p>
+        <p>LinkedIn: <a href="https://linkedin.com/in/carl" target="_blank">Carl's Profile</a></p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 carlanlyo. All rights reserved.</p>
+        <p>&copy; 2024 Carl's Corner. All Rights Reserved.</p>
     </footer>
 
     <script>
