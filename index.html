@@ -24,6 +24,10 @@
             padding-top: 30px;
             min-height: 70px;
             border-bottom: #e8491d 3px solid;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
         header a {
             color: #ffffff;
@@ -63,17 +67,17 @@
             background-size: cover;
             text-align: center;
             color: #ffffff;
+            padding-top: 150px;
         }
         #showcase h1 {
-            margin-top: 100px;
             font-size: 55px;
             margin-bottom: 10px;
         }
         #showcase p {
             font-size: 20px;
         }
-        #main {
-            padding: 30px 0;
+        section {
+            padding: 50px 0;
             background: #ffffff;
         }
         footer {
@@ -92,7 +96,7 @@
             </div>
             <nav>
                 <ul>
-                    <li class="current"><a href="#home">Home</a></li>
+                    <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#portfolio">Portfolio</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -101,18 +105,24 @@
         </div>
     </header>
 
-    <section id="showcase">
-        <div class="container">
-            <h1>Welcome to My Personal Website</h1>
-            <p>I'm a [Your Profession] passionate about [Your Interests]</p>
+    <section id="home">
+        <div id="showcase">
+            <div class="container">
+                <h1>Welcome to My Personal Website</h1>
+                <p>I'm a medical doctor passionate about education, artificial intelligence and cats and dogs (in random order)</p>
+            </div>
         </div>
     </section>
 
-    <section id="main">
+    <section id="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>Hello! I'm [Your Name], a [Your Profession] based in [Your Location]. I'm passionate about [Your Interests/Skills] and always eager to learn and grow in my field.</p>
-            
+            <p>Hello! I'm Anly, a medical doctor based in Philippines. I'm passionate about [Your Interests/Skills] and always eager to learn and grow in my field.</p>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
             <h2>My Portfolio</h2>
             <p>Here are some of my recent projects:</p>
             <ul>
@@ -120,7 +130,11 @@
                 <li>Project 2: [Brief Description]</li>
                 <li>Project 3: [Brief Description]</li>
             </ul>
-            
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
             <h2>Contact Me</h2>
             <p>Feel free to reach out to me at: [Your Email]</p>
             <p>Connect with me on: 
@@ -136,12 +150,40 @@
     </footer>
 
     <script>
-        // Add smooth scrolling to nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling function
+            function smoothScroll(target, duration) {
+                var targetElement = document.querySelector(target);
+                var targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                var startPosition = window.pageYOffset;
+                var distance = targetPosition - startPosition;
+                var startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    var timeElapsed = currentTime - startTime;
+                    var run = ease(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+            }
+
+            // Add smooth scrolling to all links
+            var links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = this.getAttribute('href');
+                    smoothScroll(target, 1000);
                 });
             });
         });
