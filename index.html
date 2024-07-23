@@ -10,6 +10,7 @@
             --text-color: #333;
             --header-color: #1a1a1a;
             --link-color: #e74c3c;
+            --underline-color: #000;
             --footer-bg-color: #f0f0f0;
         }
         .dark-mode {
@@ -17,6 +18,7 @@
             --text-color: #f9f9f9;
             --header-color: #f9f9f9;
             --link-color: #ff6b6b;
+            --underline-color: #f9f9f9;
             --footer-bg-color: #2a2a2a;
         }
         body {
@@ -106,7 +108,7 @@
         .hover-underline {
             position: relative;
             text-decoration: none;
-            color: #000;
+            color: var(--text-color);
         }
         .hover-underline::after {
             content: '';
@@ -115,7 +117,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #000;
+            background-color: var(--underline-color);
             transform: scaleX(0);
             transform-origin: bottom right;
             transition: transform 0.3s ease-out;
