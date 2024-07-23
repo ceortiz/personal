@@ -101,7 +101,13 @@
     <main>
         <section id="about">
             <h2>About Me</h2>
-            <p>I’m a physician currently living in the Philippines 🇵🇭. I love it here but I can't help thinking of my times <u>here</u> and recently <u>here</u>. I have a deep interest in investing and tech startups, especially those nurtured by YC Combinator. Recently, I’ve been focusing on learning Spanish to expand my horizons further.</p>
+            <p>I’m a physician currently living in the Philippines 🇵🇭. I love it here but I can't help thinking of my times  <span class="hover-image-container">
+                    here
+                    <img src="https://ceortiz.github.io/personal/images/IMG_2188.HEIC" alt="Singapore" class="hover-image">
+                </span> and recently  <span class="hover-image-container">
+                    here
+                    <img src="https://ceortiz.github.io/personal/images/DSC07883.jpg" alt="UK" class="hover-image">
+                </span>. I have a deep interest in investing and tech startups, especially those nurtured by YC Combinator. Recently, I’ve been focusing on learning Spanish to expand my horizons further.</p>
         <p>After completing my medical training and passing the PLAB 2 exam, I’ve been exploring various facets of medicine and technology. My professional journey has taken me from the UK to the Philippines, where I’ve been working for the past four years, honing my skills in outpatient, emergency, and ward settings.</p>
         <p>I'm also an avid reader, currently delving into "The Beginning of Infinity" by David Deutsch. My love for learning extends to developing effective study tools and apps to help others excel in their academic endeavors.</p>
     </section>
@@ -161,6 +167,16 @@
         modeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             modeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+        });
+
+        // Load images when hovered
+        document.querySelectorAll('.hover-image-container').forEach(container => {
+            const img = container.querySelector('.hover-image');
+            container.addEventListener('mouseenter', () => {
+                if (img.getAttribute('src') === '/api/placeholder/200/150') {
+                    img.setAttribute('src', img.getAttribute('data-src'));
+                }
+            });
         });
     </script>
 </body>
