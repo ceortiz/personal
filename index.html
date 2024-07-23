@@ -102,6 +102,28 @@
         .hover-image-container:hover .hover-image {
             opacity: 1;
         }
+
+        .hover-underline {
+            position: relative;
+            text-decoration: none;
+            color: #000;
+        }
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease-out;
+        }
+        .hover-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
     </style>
 </head>
 <body>
@@ -115,10 +137,10 @@
     </header>
 
     <nav>
-        <a href="#about">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" class="hover-underline">About Me</a>
+        <a href="#projects" class="hover-underline">Projects</a>
+        <a href="#work" class="hover-underline">Work</a>
+        <a href="#contact" class="hover-underline">Contact</a>
     </nav>
 
     <main>
