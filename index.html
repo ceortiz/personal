@@ -1,3 +1,94 @@
+To add programming languages and frameworks below the heading with italic text and dividers in between, you can use a combination of HTML and CSS. Here’s how you can do it:
+
+### HTML Changes
+
+Update the "Projects" section to include a new line below the heading for the programming languages and frameworks:
+
+```html
+<section id="projects">
+    <h2>Projects</h2>
+    <p>On the side, I develop computer software. Below are some of my recent projects.</p>
+    
+    <div class="project-container">
+        <div class="project-text">
+            <h3>Basket: Personalized Learning App</h3>
+            <div class="technologies">
+                <i>FlutterFlow</i>
+                <div class="tech-divider"></div>
+                <i>Supabase</i>
+                <div class="tech-divider"></div>
+                <i>Firebase</i>
+                <div class="tech-divider"></div>
+                <i>React</i>
+            </div>
+            <p>Basket is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies. Check out the demo on YouTube to see how Basket helped me pass PLAB 1 and PLAB 2.</p>
+        </div>
+        <img src="https://ceortiz.github.io/personal/images/basket_content.jpg" alt="Basket App Screenshot" class="project-image side-by-side">
+    </div>
+
+    <div class="project-container">
+        <div class="project-text">
+            <h3>PLAB 2 Exam Tracker</h3>
+            <div class="technologies">
+                <i>Notion</i>
+                <div class="tech-divider"></div>
+                <i>JavaScript</i>
+                <div class="tech-divider"></div>
+                <i>HTML & CSS</i>
+            </div>
+            <p>I created a PLAB 2 tracker to help to enhance productivity and organization when preparing for PLAB 2. This tracker has been invaluable in my PLAB 2 preparation.</p>
+        </div>
+        <img src="https://ceortiz.github.io/personal/images/stations_tracker.jpg" alt="Notion Templates Screenshot" class="project-image">
+    </div>
+
+    <div class="project-container">
+        <div class="project-text">
+            <h3>Supabase Database Schema</h3>
+            <div class="technologies">
+                <i>Supabase</i>
+                <div class="tech-divider"></div>
+                <i>PostgreSQL</i>
+            </div>
+            <p>For those interested in the technical aspects of Basket, here’s the current schema of the Supabase database:</p>
+            <ul>
+                <li>users table: users_id, email</li>
+                <li>workspace: id, title</li>
+                <li>topics table: id, title, basket_id (foreign key), workspace_id (foreign key)</li>
+                <li>baskets table: id, name, description, workspace_id (foreign key)</li>
+                <li>concepts table: id, topics_id (foreign key), text</li>
+            </ul>
+        </div>
+        <img src="https://ceortiz.github.io/personal/images/supabase_basket.png" alt="Supabase Schema Screenshot" class="project-image">
+    </div>
+</section>
+```
+
+### CSS Changes
+
+Add CSS to style the technologies section and the dividers:
+
+```css
+.technologies {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.tech-divider {
+    width: 1px;
+    height: 15px;
+    background-color: var(--text-color);
+    margin: 0 10px;
+}
+```
+
+### Full Code with Changes
+
+Here is the full HTML and CSS with the updates:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -162,6 +253,8 @@
         .project-container {
             display: flex;
             flex-wrap: wrap;
+
+
             gap: 20px;
             align-items: center;
             margin-bottom: 40px;
@@ -174,6 +267,20 @@
             flex: 1;
             max-width: 300px;
             min-width: 200px;
+        }
+        .technologies {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-style: italic;
+            color: var(--text-color);
+        }
+
+        .tech-divider {
+            width: 1px;
+            height: 15px;
+            background-color: var(--text-color);
+            margin: 0 10px;
         }
         /* Responsive design for smaller screens */
         @media (max-width: 768px) {
@@ -225,6 +332,15 @@
         <div class="project-container">
             <div class="project-text">
                 <h3>Basket: Personalized Learning App</h3>
+                <div class="technologies">
+                    <i>FlutterFlow</i>
+                    <div class="tech-divider"></div>
+                    <i>Supabase</i>
+                    <div class="tech-divider"></div>
+                    <i>Firebase</i>
+                    <div class="tech-divider"></div>
+                    <i>Python</i>
+                </div>
                 <p>Basket is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies. Check out the demo on YouTube to see how Basket helped me pass PLAB 1 and PLAB 2.</p>
             </div>
             <img src="https://ceortiz.github.io/personal/images/basket_content.jpg" alt="Basket App Screenshot" class="project-image side-by-side">
@@ -233,22 +349,29 @@
         <div class="project-container">
             <div class="project-text">
                 <h3>PLAB 2 Exam Tracker</h3>
+                <div class="technologies">
+                    <i>Notion</i>
+                </div>
                 <p>I created a PLAB 2 tracker to help to enhance productivity and organization when preparing for PLAB 2. This tracker has been invaluable in my PLAB 2 preparation.</p>
             </div>
-            <img src="https://ceortiz.github.io/personal/images/stations_tracker.jpg" alt="Notion Templates Screenshot" class="project-image">
         </div>
 
         <div class="project-container">
             <div class="project-text">
                  <h3>Supabase Database Schema</h3>
-        <p>For those interested in the technical aspects of Basket, here’s the current schema of the Supabase database:</p>
-        <ul>
-            <li>users table: users_id, email</li>
-            <li>workspace: id, title</li>
-            <li>topics table: id, title, basket_id (foreign key), workspace_id (foreign key)</li>
-            <li>baskets table: id, name, description, workspace_id (foreign key)</li>
-            <li>concepts table: id, topics_id (foreign key), text</li>
-        </ul>
+                 <div class="technologies">
+                     <i>Supabase</i>
+                     <div class="tech-divider"></div>
+                     <i>PostgreSQL</i>
+                 </div>
+                 <p>For those interested in the technical aspects of Basket, here’s the current schema of the Supabase database:</p>
+                 <ul>
+                     <li>users table: users_id, email</li>
+                     <li>workspace: id, title</li>
+                     <li>topics table: id, title, basket_id (foreign key), workspace_id (foreign key)</li>
+                     <li>baskets table: id, name, description, workspace_id (foreign key)</li>
+                     <li>concepts table: id, topics_id (foreign key), text</li>
+                 </ul>
             </div>
             <img src="https://ceortiz.github.io/personal/images/supabase_basket.png" alt="Supabase Schema Screenshot" class="project-image">
         </div>
@@ -274,10 +397,6 @@
             <div class="divider"></div>
             <a href="http://www.youtube.com/@carlortiz2695" target="_blank">
                 <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube Icon">
-            </a>
-            <div class="divider"></div>
-            <a href="https://linkedin.com/in/carl" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn Icon">
             </a>
         </div>
     </section>
@@ -307,3 +426,4 @@
     </script>
 </body>
 </html>
+```
