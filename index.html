@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>carlanlyo</title>
+    <title>carlanlyortiz</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -153,7 +153,7 @@
         }
         .project-image {
             width: 100%;
-            max-width: 800px;
+            max-width: 400px; /* Adjust the max-width for smaller size on desktop */
             height: auto;
             margin: 20px 0;
             border-radius: 5px;
@@ -172,8 +172,18 @@
         }
         .side-by-side {
             flex: 1;
-            max-width: 400px;
-            min-width: 300px;
+            max-width: 300px;
+            min-width: 200px;
+        }
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .project-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .side-by-side {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -199,7 +209,7 @@
             <h2>About Me</h2>
             <p>I’m a physician currently living in the Philippines 🇵🇭. I love it here but I can't help thinking of my times  <span class="hover-image-container">
                     here
-                    <img src="https://ceortiz.github.io/personal/images/IMG_2188.HEIC" alt="Singapore" class="hover-image">
+                    <img src="https://ceortiz.github.io/personal/images/paris.jpeg" alt="Paris" class="hover-image">
                 </span> and recently  <span class="hover-image-container">
                     here
                     <img src="https://ceortiz.github.io/personal/images/DSC07883.jpg" alt="UK" class="hover-image">
@@ -210,22 +220,22 @@
 
     <section id="projects">
         <h2>Projects</h2>
-        <p>On the side, I [Your Side Projects/Interests]. I also created [Another Project], a community of [Project Description].</p>
+        <p>On the side, I develop computer software. Below are some of my recent projects.</p>
         
         <div class="project-container">
             <div class="project-text">
                 <h3>Basket: Personalized Learning App</h3>
                 <p>Basket is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies. Check out the demo on YouTube to see how Basket helped me pass PLAB 1 and PLAB 2.</p>
             </div>
-            <img src="path/to/your/basket_screenshot.png" alt="Basket App Screenshot" class="project-image side-by-side">
+            <img src="https://ceortiz.github.io/personal/images/basket_content.jpg" alt="Basket App Screenshot" class="project-image side-by-side">
         </div>
         
-        <h3>Notion Templates on Gumroad</h3>
-        <p>I’ve been selling Notion templates on Gumroad, which have been crafted to enhance productivity and organization. These templates have been invaluable in my journey through medical school and beyond.</p>
-        <img src="path/to/your/notion_templates_screenshot.png" alt="Notion Templates Screenshot" class="project-image">
+        <h3>PLAB 2 Exam Tracker</h3>
+        <p>I created a PLAB 2 tracker to help to enhance productivity and organization when preparing for PLAB 2. This tracker has been invaluable in my PLAB 2 preparation.</p>
+        <img src="https://ceortiz.github.io/personal/images/stations_tracker.jpg" alt="Notion Templates Screenshot" class="project-image">
         
         <h3>Supabase Database Schema</h3>
-        <p>For those interested in the technical aspects of Basket, here’s the current schema of our Supabase database:</p>
+        <p>For those interested in the technical aspects of Basket, here’s the current schema of the Supabase database:</p>
         <ul>
             <li>users table: users_id, email</li>
             <li>workspace: id, title</li>
@@ -238,7 +248,7 @@
 
     <section id="work">
         <h2>Work</h2>
-        <p>Currently, I'm working at [Your Company/Organization] where we make it our mission to [Your Mission]. There I [Your Role/Project].</p>
+        <p>Currently, I'm working as a general physician in a district hospital in the Philippines. I see patients from all age group in outpatient, emergency and ward settings (also critical care).</p>
     </section>
 
     <section id="contact">
