@@ -15,6 +15,7 @@
             --link-color: #e74c3c;
             --underline-color: #e74c3c;
             --footer-bg-color: #f0f0f0;
+            --divider-color: #e0e0e0;
         }
         .dark-mode {
             --bg-color: #121212;
@@ -23,6 +24,7 @@
             --link-color: #bb86fc;
             --underline-color: #bb86fc;
             --footer-bg-color: #1f1f1f;
+            --divider-color: #444;
         }
         body {
             font-family: 'Roboto', sans-serif;
@@ -135,13 +137,19 @@
         .contact a {
             display: flex;
             align-items: center;
-            color: var(--text-color);
+            color: var(--link-color);
             text-decoration: none;
             gap: 5px;
         }
         .contact a img {
             width: 24px;
             height: 24px;
+        }
+        .divider {
+            width: 1px;
+            height: 24px;
+            background-color: var(--divider-color);
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -205,12 +213,15 @@
                 <a href="mailto:anly40@gmail.com">
                     <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon"> anly40@gmail.com
                 </a>
+                <div class="divider"></div>
                 <a href="https://x.com/theokayestMS" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter Icon"> @Carl
                 </a>
+                <div class="divider"></div>
                 <a href="http://www.youtube.com/@carlortiz2695" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube Icon"> Carl’s Channel
                 </a>
+                <div class="divider"></div>
                 <a href="https://linkedin.com/in/carl" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn Icon"> Carl's Profile
                 </a>
