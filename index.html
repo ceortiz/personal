@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>carlanlyo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #f9f9f9;
@@ -14,15 +17,15 @@
             --footer-bg-color: #f0f0f0;
         }
         .dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #f9f9f9;
-            --header-color: #f9f9f9;
-            --link-color: #ff6b6b;
-            --underline-color: #ff6b6b;
-            --footer-bg-color: #2a2a2a;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --header-color: #ffffff;
+            --link-color: #bb86fc;
+            --underline-color: #bb86fc;
+            --footer-bg-color: #1f1f1f;
         }
         body {
-            font-family: serif;
+            font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
@@ -36,14 +39,16 @@
         }
         h1, h2 {
             color: var(--header-color);
+            font-family: 'Merriweather', serif;
         }
         h1 {
             font-style: italic;
         }
         #mode-toggle-container {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
+            z-index: 1000;
         }
         nav {
             margin-top: 50px;
@@ -142,16 +147,15 @@
         <section id="about">
             <h2>About Me</h2>
             <p>I’m a physician currently living in the Philippines 🇵🇭. I love it here but I can't help thinking of my times  <span class="hover-image-container">
-                    <u>here</u>
+                    here
                     <img src="https://ceortiz.github.io/personal/images/IMG_2188.HEIC" alt="Singapore" class="hover-image">
                 </span> and recently  <span class="hover-image-container">
-                    <u>here</u>
+                    here
                     <img src="https://ceortiz.github.io/personal/images/DSC07883.jpg" alt="UK" class="hover-image">
                 </span>. I have a deep interest in investing and tech startups, especially those nurtured by YC Combinator. Recently, I’ve been focusing on learning Spanish to expand my horizons further.</p>
         <p>After completing my medical training and passing the PLAB 2 exam, I’ve been exploring various facets of medicine and technology. My professional journey has taken me from the UK to the Philippines, where I’ve been working for the past four years, honing my skills in outpatient, emergency, and ward settings.</p>
         <p>I'm also an avid reader, currently delving into "The Beginning of Infinity" by David Deutsch. My love for learning extends to developing effective study tools and apps to help others excel in their academic endeavors.</p>
     </section>
-        </section>
 
         <section id="projects">
             <h2>Projects</h2>
