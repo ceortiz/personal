@@ -151,6 +151,30 @@
             background-color: var(--divider-color);
             margin: 0 10px;
         }
+        .project-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .project-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .side-by-side {
+            flex: 1;
+            max-width: 400px;
+            min-width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -184,13 +208,22 @@
         <p>I'm also an avid reader, currently delving into "The Beginning of Infinity" by David Deutsch. My love for learning extends to developing effective study tools and apps to help others excel in their academic endeavors.</p>
     </section>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>On the side, I [Your Side Projects/Interests]. I also created [Another Project], a community of [Project Description].</p>
-              <h3>Basket: Personalized Learning App</h3>
-        <p>Basket is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies. Check out the demo on YouTube to see how Basket helped me pass PLAB 1 and PLAB 2.</p>
+    <section id="projects">
+        <h2>Projects</h2>
+        <p>On the side, I [Your Side Projects/Interests]. I also created [Another Project], a community of [Project Description].</p>
+        
+        <div class="project-container">
+            <div class="project-text">
+                <h3>Basket: Personalized Learning App</h3>
+                <p>Basket is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies. Check out the demo on YouTube to see how Basket helped me pass PLAB 1 and PLAB 2.</p>
+            </div>
+            <img src="path/to/your/basket_screenshot.png" alt="Basket App Screenshot" class="project-image side-by-side">
+        </div>
+        
         <h3>Notion Templates on Gumroad</h3>
         <p>I’ve been selling Notion templates on Gumroad, which have been crafted to enhance productivity and organization. These templates have been invaluable in my journey through medical school and beyond.</p>
+        <img src="path/to/your/notion_templates_screenshot.png" alt="Notion Templates Screenshot" class="project-image">
+        
         <h3>Supabase Database Schema</h3>
         <p>For those interested in the technical aspects of Basket, here’s the current schema of our Supabase database:</p>
         <ul>
@@ -200,33 +233,34 @@
             <li>baskets table: id, name, description, workspace_id (foreign key)</li>
             <li>concepts table: id, topics_id (foreign key), text</li>
         </ul>
-        </section>
+        <img src="path/to/your/supabase_schema_screenshot.png" alt="Supabase Schema Screenshot" class="project-image">
+    </section>
 
-        <section id="work">
-            <h2>Work</h2>
-            <p>Currently, I'm working at [Your Company/Organization] where we make it our mission to [Your Mission]. There I [Your Role/Project].</p>
-        </section>
+    <section id="work">
+        <h2>Work</h2>
+        <p>Currently, I'm working at [Your Company/Organization] where we make it our mission to [Your Mission]. There I [Your Role/Project].</p>
+    </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="contact">
-                <a href="mailto:anly40@gmail.com">
-                    <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
-                </a>
-                <div class="divider"></div>
-                <a href="https://x.com/theokayestMS" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter Icon">
-                </a>
-                <div class="divider"></div>
-                <a href="http://www.youtube.com/@carlortiz2695" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube Icon">
-                </a>
-                <div class="divider"></div>
-                <a href="https://linkedin.com/in/carl" target="_blank">
-                    <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn Icon">
-                </a>
-            </div>
-        </section>
+    <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact">
+            <a href="mailto:anly40@gmail.com">
+                <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon">
+            </a>
+            <div class="divider"></div>
+            <a href="https://x.com/theokayestMS" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter Icon">
+            </a>
+            <div class="divider"></div>
+            <a href="http://www.youtube.com/@carlortiz2695" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube Icon">
+            </a>
+            <div class="divider"></div>
+            <a href="https://linkedin.com/in/carl" target="_blank">
+                <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn Icon">
+            </a>
+        </div>
+    </section>
     </main>
 
     <footer>
