@@ -53,26 +53,35 @@
             z-index: 1000;
         }
 
-        /* Updated and new chatbox styles */
+        /* Updated chatbox styles */
         .chatbox {
             position: fixed;
             right: 20px;
             bottom: 20px;
             width: 300px;
-            border: 1px solid var(--divider-color);
             border-radius: 10px;
             overflow: hidden;
-            background-color: var(--bg-color);
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #f2f2f7;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             z-index: 1000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         .chat-header {
-            background-color: var(--link-color);
-            color: var(--bg-color);
+            background-color: #3b82f6;
+            color: white;
             padding: 10px;
             font-weight: bold;
             cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header-text {
+            flex-grow: 1;
+        }
+        .chat-toggle-icon {
+            font-size: 18px;
+            transition: transform 0.3s ease;
         }
         .chat-body {
             display: none;
@@ -85,51 +94,54 @@
         .chat-input {
             display: flex;
             padding: 10px;
-            background-color: var(--footer-bg-color);
+            background-color: #e5e5ea;
         }
         .chat-input input {
             flex-grow: 1;
-            padding: 5px;
-            border: 1px solid var(--divider-color);
-            border-radius: 3px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            background-color: white;
+            color: black;
         }
         .chat-input button {
-            margin-left: 5px;
-            padding: 5px 10px;
-            background-color: var(--link-color);
-            color: var(--bg-color);
+            margin-left: 8px;
+            padding: 8px 12px;
+            background-color: #3b82f6;
+            color: white;
             border: none;
-            border-radius: 3px;
+            border-radius: 20px;
             cursor: pointer;
         }
         .message {
             margin-bottom: 10px;
-            padding: 5px 10px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 18px;
             max-width: 80%;
+            display: inline-block;
         }
         .user-message {
-            background-color: var(--link-color);
-            color: var(--bg-color);
-            align-self: flex-end;
-            margin-left: auto;
+            background-color: #3b82f6;
+            color: white;
+            float: right;
+            clear: both;
         }
         .bot-message {
-            background-color: var(--footer-bg-color);
-            color: var(--text-color);
-            align-self: flex-start;
+            background-color: #e5e5ea;
+            color: black;
+            float: left;
+            clear: both;
         }
         .option-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 5px;
             margin-top: 10px;
+            clear: both;
         }
         .option-button {
-            background-color: var(--link-color);
-            color: var(--bg-color);
+            background-color: #3b82f6;
+            color: white;
             border: none;
             border-radius: 15px;
             padding: 5px 10px;
@@ -140,11 +152,12 @@
             display: none;
             align-items: center;
             margin-bottom: 10px;
+            clear: both;
         }
         .typing-indicator span {
             height: 8px;
             width: 8px;
-            background-color: var(--text-color);
+            background-color: #3b82f6;
             border-radius: 50%;
             display: inline-block;
             margin-right: 5px;
@@ -329,7 +342,10 @@
 
    <!-- Updated chatbox with typing indicator -->
     <div class="chatbox">
-        <div class="chat-header" onclick="toggleChat()">Chat with me</div>
+        <div class="chat-header" onclick="toggleChat()">
+            <span class="chat-header-text">Chat with me</span>
+            <span class="chat-toggle-icon">▼</span>
+        </div>
         <div class="chat-body">
             <div class="chat-messages" id="chatMessages">
                 <div class="typing-indicator" id="typingIndicator">
@@ -526,106 +542,110 @@
         });
 
        // Updated chatbox functionality
-        const chatBody = document.querySelector('.chat-body');
-        const chatMessages = document.getElementById('chatMessages');
-        const optionButtons = document.getElementById('optionButtons');
-        const userInput = document.getElementById('userInput');
-        const typingIndicator = document.getElementById('typingIndicator');
+const chatBody = document.querySelector('.chat-body');
+const chatMessages = document.getElementById('chatMessages');
+const optionButtons = document.getElementById('optionButtons');
+const userInput = document.getElementById('userInput');
+const typingIndicator = document.getElementById('typingIndicator');
+const chatToggleIcon = document.querySelector('.chat-toggle-icon');
 
-        function toggleChat() {
-            chatBody.style.display = chatBody.style.display === 'none' ? 'block' : 'none';
-            if (chatBody.style.display === 'block') {
-                showOptions();
-            }
-        }
+function toggleChat() {
+    chatBody.style.display = chatBody.style.display === 'none' ? 'block' : 'none';
+    chatToggleIcon.style.transform = chatBody.style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)';
+    if (chatBody.style.display === 'block') {
+        showOptions();
+    }
+}
 
-        function sendMessage() {
-            const message = userInput.value.trim();
-            if (message !== '') {
-                addMessage(message, 'user');
-                userInput.value = '';
-                showTypingIndicator();
-                getBotResponse(message);
-            }
-        }
+function sendMessage() {
+    const message = userInput.value.trim();
+    if (message !== '') {
+        addMessage(message, 'user');
+        userInput.value = '';
+        showTypingIndicator();
+        getBotResponse(message);
+    }
+}
 
-        function addMessage(message, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender + '-message');
-            messageElement.textContent = message;
-            chatMessages.insertBefore(messageElement, typingIndicator);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+function addMessage(message, sender) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message', sender + '-message');
+    messageElement.textContent = message;
+    // Adjust the width of the message bubble based on content length
+    messageElement.style.maxWidth = Math.min(message.length * 10 + 40, 80) + '%';
+    chatMessages.insertBefore(messageElement, typingIndicator);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-        function showTypingIndicator() {
-            typingIndicator.style.display = 'flex';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+function showTypingIndicator() {
+    typingIndicator.style.display = 'flex';
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
 
-        function hideTypingIndicator() {
-            typingIndicator.style.display = 'none';
-        }
+function hideTypingIndicator() {
+    typingIndicator.style.display = 'none';
+}
 
-        function showOptions() {
-            const options = [
-                "Tell me about your work",
-                "What are your hobbies?",
-                "Tell me a joke",
-                "What's your favorite project?",
-                "How's life in the Philippines?",
-                "Future plans?"
-            ];
-            optionButtons.innerHTML = options.map(option => 
-                `<button class="option-button" onclick="selectOption('${option}')">${option}</button>`
-            ).join('');
-        }
+function showOptions() {
+    const options = [
+        "Tell me about your work",
+        "What are your hobbies?",
+        "Tell me a joke",
+        "What's your favorite project?",
+        "How's life in the Philippines?",
+        "Future plans?"
+    ];
+    optionButtons.innerHTML = options.map(option => 
+        `<button class="option-button" onclick="selectOption('${option}')">${option}</button>`
+    ).join('');
+}
 
-        function selectOption(option) {
-            addMessage(option, 'user');
-            showTypingIndicator();
-            getBotResponse(option);
-        }
+function selectOption(option) {
+    addMessage(option, 'user');
+    showTypingIndicator();
+    getBotResponse(option);
+}
 
-        function getBotResponse(message) {
-            let response;
-            const lowerMessage = message.toLowerCase();
+function getBotResponse(message) {
+    let response;
+    const lowerMessage = message.toLowerCase();
 
-            if (lowerMessage.includes('work') || lowerMessage.includes('do you do')) {
-                response = "I'm a physician practicing medicine in the Philippines. I've been doing this for 4 years now in a quaint town in southeast Luzon.";
-            } else if (lowerMessage.includes('hobbies')) {
-                response = "I'm an avid reader and I love tinkering with my MacBook to create interesting projects. I'm currently reading 'The Fabric of Reality' by David Deutsch.";
-            } else if (lowerMessage.includes('joke')) {
-                const jokes = [
-                    "Why don't scientists trust atoms? Because they make up everything!",
-                    "Why did the scarecrow win an award? He was outstanding in his field!",
-                    "Why don't eggs tell jokes? They'd crack each other up!"
-                ];
-                response = jokes[Math.floor(Math.random() * jokes.length)];
-            } else if (lowerMessage.includes('favorite project')) {
-                response = "One of my favorite projects is Basket, a personalized learning app I developed. It helps users retain difficult concepts for long exams by connecting them to familiar topics.";
-            } else if (lowerMessage.includes('philippines')) {
-                response = "Life in the Philippines is great! I love it here in this corner of the world. The people are friendly, the food is amazing, and there's always something new to discover.";
-            } else if (lowerMessage.includes('future plans')) {
-                response = "In the future, I plan to practice medicine and do clinical research in the UK. I've already passed my PLAB 1 and PLAB 2 exams and I'm in the process of GMC registration.";
-            } else {
-                response = "That's an interesting topic! I'd love to chat more about it when I'm back. Feel free to explore my website for more information about me and my projects.";
-            }
+    if (lowerMessage.includes('work') || lowerMessage.includes('do you do')) {
+        response = "I'm a physician practicing medicine in the Philippines. I've been doing this for 4 years now in a quaint town in southeast Luzon.";
+    } else if (lowerMessage.includes('hobbies')) {
+        response = "I'm an avid reader and I love tinkering with my MacBook to create interesting projects. I'm currently reading 'The Fabric of Reality' by David Deutsch.";
+    } else if (lowerMessage.includes('joke')) {
+        const jokes = [
+            "Why don't scientists trust atoms? Because they make up everything!",
+            "Why did the scarecrow win an award? He was outstanding in his field!",
+            "Why don't eggs tell jokes? They'd crack each other up!"
+        ];
+        response = jokes[Math.floor(Math.random() * jokes.length)];
+    } else if (lowerMessage.includes('favorite project')) {
+        response = "One of my favorite projects is Basket, a personalized learning app I developed. It helps users retain difficult concepts for long exams by connecting them to familiar topics.";
+    } else if (lowerMessage.includes('philippines')) {
+        response = "Life in the Philippines is great! I love it here in this corner of the world. The people are friendly, the food is amazing, and there's always something new to discover.";
+    } else if (lowerMessage.includes('future plans')) {
+        response = "In the future, I plan to practice medicine and do clinical research in the UK. I've already passed my PLAB 1 and PLAB 2 exams and I'm in the process of GMC registration.";
+    } else {
+        response = "That's an interesting topic! I'd love to chat more about it when I'm back. Feel free to explore my website for more information about me and my projects.";
+    }
 
-            setTimeout(() => {
-                hideTypingIndicator();
-                addMessage(response, 'bot');
-                showOptions();
-            }, 1500);
-        }
+    setTimeout(() => {
+        hideTypingIndicator();
+        addMessage(response, 'bot');
+        showOptions();
+    }, 1500);
+}
 
-        userInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
+userInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
 
-        // Initialize chat
-        toggleChat();
+// Initialize chat
+toggleChat();
     </script>
 </body>
 </html>
