@@ -341,10 +341,12 @@
     </header>
 
    <!-- Updated chatbox with typing indicator -->
+
+    
       <div class="chat-icon" onclick="toggleChat()">
         <i class="fas fa-comment-dots"></i>
     </div>
-    <div class="chatbox">
+    <div class="chatbox" style="width: 60px; height: 60px;">
         <div class="chat-header">
             <span class="chat-header-text">Chat with me</span>
             <span class="chat-toggle-icon" onclick="toggleChat()">
@@ -555,29 +557,29 @@ const typingIndicator = document.getElementById('typingIndicator');
 const chatToggleIcon = document.querySelector('.chat-toggle-icon');
 
 // Updated toggleChat function
-        function toggleChat() {
-            const chatbox = document.querySelector('.chatbox');
-            const chatIcon = document.querySelector('.chat-icon');
-            const chatBody = document.querySelector('.chat-body');
-            const chatToggleIcon = document.querySelector('.chat-toggle-icon i');
+function toggleChat() {
+    const chatbox = document.querySelector('.chatbox');
+    const chatIcon = document.querySelector('.chat-icon');
+    const chatBody = document.querySelector('.chat-body');
+    const chatToggleIcon = document.querySelector('.chat-toggle-icon i');
 
-            if (chatBody.style.display === 'none' || chatBody.style.display === '') {
-                chatbox.style.width = '300px';
-                chatbox.style.height = '400px';
-                chatIcon.style.display = 'none';
-                chatBody.style.display = 'block';
-                chatBody.style.maxHeight = '340px'; // Adjust based on your chatbox height
-                chatToggleIcon.className = 'fas fa-chevron-up';
-                showOptions();
-            } else {
-                chatbox.style.width = '60px';
-                chatbox.style.height = '60px';
-                chatIcon.style.display = 'flex';
-                chatBody.style.display = 'none';
-                chatBody.style.maxHeight = '0';
-                chatToggleIcon.className = 'fas fa-chevron-down';
-            }
-        }
+    if (chatBody.style.display === 'none' || chatBody.style.display === '') {
+        chatbox.style.width = '300px';
+        chatbox.style.height = '400px';
+        chatIcon.style.display = 'none';
+        chatBody.style.display = 'block';
+        chatBody.style.maxHeight = '340px';
+        chatToggleIcon.className = 'fas fa-chevron-up';
+        showOptions();
+    } else {
+        chatbox.style.width = '60px';
+        chatbox.style.height = '60px';
+        chatIcon.style.display = 'flex';
+        chatBody.style.display = 'none';
+        chatBody.style.maxHeight = '0';
+        chatToggleIcon.className = 'fas fa-chevron-down';
+    }
+}
 
 function sendMessage() {
     const message = userInput.value.trim();
@@ -649,6 +651,8 @@ function getBotResponse(message) {
         response = "Life in the Philippines is great! I love it here in this corner of the world. The people are friendly, the food is amazing, and there's always something new to discover.";
     } else if (lowerMessage.includes('future plans')) {
         response = "In the future, I plan to practice medicine and do clinical research in the UK. I've already passed my PLAB 1 and PLAB 2 exams and I'm in the process of GMC registration.";
+    } else if (lowerMessage.includes('favorite subject')) {
+        response = "My favorite subject in medicine is neurology. The complexity of the human brain and nervous system fascinates me. I'm particularly interested in cognitive neuroscience and its implications for learning and memory.";
     } else {
         response = "That's an interesting topic! I'd love to chat more about it when I'm back. Feel free to explore my website for more information about me and my projects.";
     }
@@ -666,8 +670,7 @@ userInput.addEventListener('keypress', function(e) {
     }
 });
 
-// Initialize chat
-toggleChat();
+
     </script>
 </body>
 </html>
