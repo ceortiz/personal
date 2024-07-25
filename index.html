@@ -52,6 +52,40 @@
             right: 20px;
             z-index: 1000;
         }
+
+        #chatbox {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid var(--divider-color);
+            border-radius: 5px;
+            background-color: var(--footer-bg-color);
+        }
+        #chatbox textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--divider-color);
+            resize: none;
+        }
+        #chatbox button {
+            padding: 10px 20px;
+            border: none;
+            background-color: var(--link-color);
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #chatbox button:hover {
+            background-color: darken(var(--link-color), 10%);
+        }
+        #chatbox .messages {
+            margin-top: 20px;
+        }
+        #chatbox .message {
+            margin-bottom: 10px;
+        }
+        
         nav {
             margin-top: 50px;
             margin-bottom: 20px;
@@ -212,6 +246,12 @@
         <h1>Hey! 👋</h1>
         <p class="message">I'm away from my laptop right now. <a href="#contact" class="underline">Shoot me a message</a></p>
     </header>
+
+    <div id="chatbox">
+        <textarea id="chat-input" rows="3" placeholder="Ask me a question..."></textarea>
+        <button id="chat-submit">Send</button>
+        <div class="messages" id="chat-messages"></div>
+    </div>
 
     <nav>
         <a href="#about" class="hover-underline">About Me</a>
@@ -390,6 +430,32 @@
         modeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
             modeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
+        });
+
+        // Chatbox functionality
+        const chatSubmit = document.getElementById('chat-submit');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        const responses = {
+            "who are you?": "I'm Carl, a physician currently living in the Philippines with a deep interest in medicine, research, cognitive neuroscience, learning and tech.",
+            "what do you do?": "I work as a physician in a in the Philippines seeing all age groups in outpatient, emergency and ward settings. On the side, I manage a Twitter account and tinker with software products apps.",
+            "what are your projects?": "I have worked on several projects including Basket, a personalized learning app, PLAB 2 tracker, and an image classification project for road traffic signs.",
+            "tell me about your research": "I have conducted research on the cytotoxic properties of Cassia alata leaf extract and the anti-angiogenic properties of Jatropha curcas leaf extracts."
+        };
+
+        chatSubmit.addEventListener('click', () => {
+            const userInput = chatInput.value.toLowerCase().trim();
+            const response = responses[userInput] || "I'm sorry, I don't have an answer to that question.";
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message');
+            userMessage.textContent = `You: ${chatInput.value}`;
+            chatMessages.appendChild(userMessage);
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message');
+            botMessage.textContent = `Bot: ${response}`;
+            chatMessages.appendChild(botMessage);
+            chatInput.value = '';
         });
     </script>
 </body>
