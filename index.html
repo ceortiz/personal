@@ -52,24 +52,33 @@
             right: 20px;
             z-index: 1000;
         }
-        /* Add these new styles for the chatbox */
+
+        /* Updated and new chatbox styles */
         .chatbox {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
             width: 300px;
             border: 1px solid var(--divider-color);
-            border-radius: 5px;
+            border-radius: 10px;
             overflow: hidden;
-            margin: 20px auto;
             background-color: var(--bg-color);
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
         }
         .chat-header {
-            background-color: var(--footer-bg-color);
+            background-color: var(--link-color);
+            color: var(--bg-color);
             padding: 10px;
             font-weight: bold;
-            color: var(--text-color);
+            cursor: pointer;
+        }
+        .chat-body {
+            display: none;
         }
         .chat-messages {
-            height: 200px;
+            height: 250px;
             overflow-y: auto;
             padding: 10px;
         }
@@ -95,6 +104,68 @@
             border-radius: 3px;
             cursor: pointer;
         }
+        .message {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .user-message {
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        .bot-message {
+            background-color: var(--footer-bg-color);
+            color: var(--text-color);
+            align-self: flex-start;
+        }
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .option-button {
+            background-color: var(--link-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 15px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background-color: var(--text-color);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+            animation: typing 1s infinite;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0% { transform: translateY(0px); }
+            25% { transform: translateY(-5px); }
+            50% { transform: translateY(0px); }
+        }
+        @media (max-width: 768px) {
+            .chatbox {
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                border-radius: 10px 10px 0 0;
+            }
+        }
+        
         nav {
             margin-top: 50px;
             margin-bottom: 20px;
@@ -122,7 +193,7 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
-        .message {
+        .short-message {
             font-style: italic;
             color: var(--text-color);
             opacity: 0.8;
@@ -253,15 +324,25 @@
 
     <header>
         <h1>Hey! 👋</h1>
-        <p class="message">I'm away from my laptop right now. <a href="#contact" class="underline">Shoot me a message</a></p>
+        <p class="short-message">I'm away from my laptop right now. <a href="#contact" class="underline">Shoot me a message</a></p>
     </header>
 
+   <!-- Updated chatbox with typing indicator -->
     <div class="chatbox">
-        <div class="chat-header">Chat with me</div>
-        <div class="chat-messages" id="chatMessages"></div>
-        <div class="chat-input">
-            <input type="text" id="userInput" placeholder="Ask me a question...">
-            <button onclick="sendMessage()">Send</button>
+        <div class="chat-header" onclick="toggleChat()">Chat with me</div>
+        <div class="chat-body">
+            <div class="chat-messages" id="chatMessages">
+                <div class="typing-indicator" id="typingIndicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="option-buttons" id="optionButtons"></div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type a message...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
         </div>
     </div>
 
@@ -444,33 +525,107 @@
             modeToggle.textContent = document.body.classList.contains('dark-mode') ? '🌙' : '☀️';
         });
 
-        // Add this new script for the chatbox functionality
-        function sendMessage() {
-            const userInput = document.getElementById('userInput');
-            const chatMessages = document.getElementById('chatMessages');
-            
-            if (userInput.value.trim() !== '') {
-                // Add user message
-                chatMessages.innerHTML += `<p><strong>You:</strong> ${userInput.value}</p>`;
-                
-                // Simple bot response (you can replace this with more complex logic)
-                const botResponse = "Thanks for your message! I'm away right now, but I'll get back to you soon.";
-                setTimeout(() => {
-                    chatMessages.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 500);
+       // Updated chatbox functionality
+        const chatBody = document.querySelector('.chat-body');
+        const chatMessages = document.getElementById('chatMessages');
+        const optionButtons = document.getElementById('optionButtons');
+        const userInput = document.getElementById('userInput');
+        const typingIndicator = document.getElementById('typingIndicator');
 
-                userInput.value = '';
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+        function toggleChat() {
+            chatBody.style.display = chatBody.style.display === 'none' ? 'block' : 'none';
+            if (chatBody.style.display === 'block') {
+                showOptions();
             }
         }
 
-        // Allow sending message with Enter key
-        document.getElementById('userInput').addEventListener('keypress', function(e) {
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message !== '') {
+                addMessage(message, 'user');
+                userInput.value = '';
+                showTypingIndicator();
+                getBotResponse(message);
+            }
+        }
+
+        function addMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender + '-message');
+            messageElement.textContent = message;
+            chatMessages.insertBefore(messageElement, typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function showOptions() {
+            const options = [
+                "Tell me about your work",
+                "What are your hobbies?",
+                "Tell me a joke",
+                "What's your favorite project?",
+                "How's life in the Philippines?",
+                "Future plans?"
+            ];
+            optionButtons.innerHTML = options.map(option => 
+                `<button class="option-button" onclick="selectOption('${option}')">${option}</button>`
+            ).join('');
+        }
+
+        function selectOption(option) {
+            addMessage(option, 'user');
+            showTypingIndicator();
+            getBotResponse(option);
+        }
+
+        function getBotResponse(message) {
+            let response;
+            const lowerMessage = message.toLowerCase();
+
+            if (lowerMessage.includes('work') || lowerMessage.includes('do you do')) {
+                response = "I'm a physician practicing medicine in the Philippines. I've been doing this for 4 years now in a quaint town in southeast Luzon.";
+            } else if (lowerMessage.includes('hobbies')) {
+                response = "I'm an avid reader and I love tinkering with my MacBook to create interesting projects. I'm currently reading 'The Fabric of Reality' by David Deutsch.";
+            } else if (lowerMessage.includes('joke')) {
+                const jokes = [
+                    "Why don't scientists trust atoms? Because they make up everything!",
+                    "Why did the scarecrow win an award? He was outstanding in his field!",
+                    "Why don't eggs tell jokes? They'd crack each other up!"
+                ];
+                response = jokes[Math.floor(Math.random() * jokes.length)];
+            } else if (lowerMessage.includes('favorite project')) {
+                response = "One of my favorite projects is Basket, a personalized learning app I developed. It helps users retain difficult concepts for long exams by connecting them to familiar topics.";
+            } else if (lowerMessage.includes('philippines')) {
+                response = "Life in the Philippines is great! I love it here in this corner of the world. The people are friendly, the food is amazing, and there's always something new to discover.";
+            } else if (lowerMessage.includes('future plans')) {
+                response = "In the future, I plan to practice medicine and do clinical research in the UK. I've already passed my PLAB 1 and PLAB 2 exams and I'm in the process of GMC registration.";
+            } else {
+                response = "That's an interesting topic! I'd love to chat more about it when I'm back. Feel free to explore my website for more information about me and my projects.";
+            }
+
+            setTimeout(() => {
+                hideTypingIndicator();
+                addMessage(response, 'bot');
+                showOptions();
+            }, 1500);
+        }
+
+        userInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 sendMessage();
             }
         });
+
+        // Initialize chat
+        toggleChat();
     </script>
 </body>
 </html>
