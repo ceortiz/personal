@@ -341,10 +341,15 @@
     </header>
 
    <!-- Updated chatbox with typing indicator -->
+      <div class="chat-icon" onclick="toggleChat()">
+        <i class="fas fa-comment-dots"></i>
+    </div>
     <div class="chatbox">
-        <div class="chat-header" onclick="toggleChat()">
+        <div class="chat-header">
             <span class="chat-header-text">Chat with me</span>
-            <span class="chat-toggle-icon">▼</span>
+            <span class="chat-toggle-icon" onclick="toggleChat()">
+                <i class="fas fa-chevron-down"></i>
+            </span>
         </div>
         <div class="chat-body">
             <div class="chat-messages" id="chatMessages">
@@ -549,13 +554,30 @@ const userInput = document.getElementById('userInput');
 const typingIndicator = document.getElementById('typingIndicator');
 const chatToggleIcon = document.querySelector('.chat-toggle-icon');
 
-function toggleChat() {
-    chatBody.style.display = chatBody.style.display === 'none' ? 'block' : 'none';
-    chatToggleIcon.style.transform = chatBody.style.display === 'none' ? 'rotate(0deg)' : 'rotate(180deg)';
-    if (chatBody.style.display === 'block') {
-        showOptions();
-    }
-}
+// Updated toggleChat function
+        function toggleChat() {
+            const chatbox = document.querySelector('.chatbox');
+            const chatIcon = document.querySelector('.chat-icon');
+            const chatBody = document.querySelector('.chat-body');
+            const chatToggleIcon = document.querySelector('.chat-toggle-icon i');
+
+            if (chatBody.style.display === 'none' || chatBody.style.display === '') {
+                chatbox.style.width = '300px';
+                chatbox.style.height = '400px';
+                chatIcon.style.display = 'none';
+                chatBody.style.display = 'block';
+                chatBody.style.maxHeight = '340px'; // Adjust based on your chatbox height
+                chatToggleIcon.className = 'fas fa-chevron-up';
+                showOptions();
+            } else {
+                chatbox.style.width = '60px';
+                chatbox.style.height = '60px';
+                chatIcon.style.display = 'flex';
+                chatBody.style.display = 'none';
+                chatBody.style.maxHeight = '0';
+                chatToggleIcon.className = 'fas fa-chevron-down';
+            }
+        }
 
 function sendMessage() {
     const message = userInput.value.trim();
