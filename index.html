@@ -655,7 +655,7 @@
         function getBotResponse(message) {
             let response;
             const lowerMessage = message.toLowerCase();
-
+        
             if (lowerMessage.includes('work') || lowerMessage.includes('do you do')) {
                 response = "I'm a physician practicing medicine in the Philippines for 4 years now.";
             } else if (lowerMessage.includes('hobbies')) {
@@ -677,14 +677,30 @@
                 response = "Life in the Philippines is great! The people are friendly and there's always something new to discover.";
             } else if (lowerMessage.includes('future plans')) {
                 response = "I plan to practice medicine and do clinical research in the UK. I've passed my PLAB exams and I'm in the process of GMC registration.";
+            } else if (lowerMessage.includes('get to know you more')) {
+                response = "Great question! The best way to get to know me more is to follow me on Twitter. You can find me at <a href='https://twitter.com/theokayestMS' target='_blank'>@theokayestMS</a>. I share insights about medicine, tech, and my ongoing projects there!";
             } else {
                 response = "That's an interesting topic! Feel free to explore my website for more information about me and my projects.";
             }
-
+        
             setTimeout(() => {
                 hideTypingIndicator();
                 addMessage(response, 'bot');
             }, 1500);
+        }
+
+        function addMessage(message, sender) {
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('message-container');
+            
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+            messageElement.innerHTML = message;  // Changed from textContent to innerHTML
+            messageElement.style.maxWidth = Math.min(message.length * 10 + 40, 80) + '%';
+            
+            messageContainer.appendChild(messageElement);
+            chatMessages.appendChild(messageContainer);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
         function showTemplateQuestions() {
@@ -694,7 +710,8 @@
                 "Tell me a joke",
                 "Favorite project?",
                 "Life in Philippines?",
-                "Future plans?"
+                "Future plans?",
+                "How do I get to know you more?"
             ];
             templateQuestions.innerHTML = questions.map(q => 
                 `<button class="templateQuestion" onclick="selectQuestion('${q}')">${q}</button>`
