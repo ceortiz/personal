@@ -56,6 +56,17 @@
             z-index: 1000;
         }
 
+        #chatLink {
+          color: var(--link-color);
+          text-decoration: underline;
+            cursor: pointer,
+            transition: color 0.3s;
+        }
+
+        #chatLink:hover {
+            color: var(--underline-color);
+        }
+
         #chatButton {
             position: fixed;
             bottom: 20px;
@@ -360,7 +371,7 @@
 
     <header>
         <h1>Hey! 👋</h1>
-        <p class="short-message">I'm away from my laptop right now. <a href="#contact" class="underline">Chat with my bot below. I come prepared with jokes!</a></p>
+        <p class="short-message">I'm away from my laptop right now. <a href="#" id="chatLink" onclick="toggleChat(); return false;">Chat with my bot below. I come prepared with jokes!</a></p>
     </header>
 
     <button id="chatButton">
@@ -584,9 +595,23 @@
             }
         });
 
+        /*
         function toggleChat() {
             chatbox.style.display = chatbox.style.display === 'none' ? 'flex' : 'none';
             chatButton.style.display = chatbox.style.display === 'none' ? 'block' : 'none';
+        }
+        */
+
+        const chatLink = document.getElementById('chatLink');
+            chatLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleChat();
+            });
+
+        function toggleChat() {
+            chatbox.style.display = 'flex';
+            chatButton.style.display = 'none';
+            showTemplateQuestions(); // Ensure template questions are shown when opening
         }
 
         function handleSendMessage() {
@@ -685,7 +710,10 @@
         // Initialize
         showTemplateQuestions();
 
-      
+      closeChat.addEventListener('click', function() {
+        chatbox.style.display = 'none';
+        chatButton.style.display = 'block';
+    });
 
 
     </script>
