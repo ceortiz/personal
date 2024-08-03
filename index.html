@@ -338,11 +338,38 @@
             max-width: 300px;
             min-width: 200px;
         }
+
+
+
+
+
+
+
+
+
+        
 .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 10px;
+        }
+
+         .tech-tag.visible {
+            opacity: 1;
+            animation: wavy 1s ease-in-out forwards;
+        }
+
+        @keyframes wavy {
+            0% {
+                transform: translateY(20px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(3deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
         }
         .tech-tag {
             padding: 4px 8px;
@@ -350,6 +377,9 @@
             font-size: 0.8em;
             font-weight: 500;
             color: #ffffff;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out;
         }
         .tech-tag-python { background-color: #3776AB; }
         .tech-tag-tensorflow { background-color: #FF6F00; }
@@ -760,6 +790,32 @@
         chatbox.style.display = 'none';
         chatButton.style.display = 'block';
     });
+
+    // Add these new functions for the scroll animation
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const tags = document.querySelectorAll('.tech-tag:not(.visible)');
+            tags.forEach((tag, index) => {
+                if (isElementInViewport(tag)) {
+                    setTimeout(() => {
+                        tag.classList.add('visible');
+                    }, index * 100); // Stagger the animation
+                }
+            });
+        }
+
+        // Add event listeners for scroll and load
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
 
 
     </script>
