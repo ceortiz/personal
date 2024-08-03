@@ -338,20 +338,33 @@
             max-width: 300px;
             min-width: 200px;
         }
-        .technologies {
+.tech-tags {
             display: flex;
-            align-items: center;
-            margin-bottom: 5px;
-            font-style: italic;
-            color: var(--text-color);
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 10px;
         }
+        .tech-tag {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 500;
+            color: #ffffff;
+        }
+        .tech-tag-python { background-color: #3776AB; }
+        .tech-tag-tensorflow { background-color: #FF6F00; }
+        .tech-tag-keras { background-color: #D00000; }
+        .tech-tag-opencv { background-color: #5C3EE8; }
+        .tech-tag-chatgpt { background-color: #00A67E; }
+        .tech-tag-flutterflow { background-color: #02569B; }
+        .tech-tag-supabase { background-color: #3ECF8E; }
+        .tech-tag-firebase { background-color: #FFCA28; color: #333333; }
+        .tech-tag-twitter { background-color: #1DA1F2; }
+        .tech-tag-content-creation { background-color: #FF4500; }
+        .tech-tag-social-media-marketing { background-color: #833AB4; }
+        .tech-tag-notion { background-color: #000000; }
+        .tech-tag-postgresql { background-color: #336791; }
 
-        .tech-divider {
-            width: 1px;
-            height: 15px;
-            background-color: var(--text-color);
-            margin: 0 10px;
-        }
         /* Responsive design for smaller screens */
         @media (max-width: 768px) {
             .project-container {
@@ -431,14 +444,11 @@
         <div class="project-container">
             <div class="project-text">
                 <h3>Image Analysis and Classification Using Neural Network</h3>
-                <div class="technologies">
-                    <i>Python</i>
-                    <div class="tech-divider"></div>
-                    <i>TensorFlow</i>
-                    <div class="tech-divider"></div>
-                    <i>Keras</i>
-                    <div class="tech-divider"></div>
-                    <i>OpenCV</i>
+                <div class="tech-tags">
+                    <span class="tech-tag tech-tag-python">Python</span>
+                    <span class="tech-tag tech-tag-tensorflow">TensorFlow</span>
+                    <span class="tech-tag tech-tag-keras">Keras</span>
+                    <span class="tech-tag tech-tag-opencv">OpenCV</span>
                 </div>
                 <p>This <a href="https://www.youtube.com/watch?v=qyaV-TdJHJs&list=PLPkvjE1MJmtoCUVNE7D656g6IQKl9mV-D&index=4" target="_blank">project</a> is part of my requirement in <a href="https://www.youtube.com/watch?v=WHCmK5AXGEE&list=PLPkvjE1MJmtoCUVNE7D656g6IQKl9mV-D&index=1" target="_blank">Harvard CS50 Introduction to Artificial Intelligence with Python</a>. It involves classifying over thousands of road traffic images to 43 traffic signs using machine learning techniques. By leveraging the power of TensorFlow and Keras, I developed a model capable of accurately identifying various traffic signs. 
                     OpenCV was used for image processing and data augmentation, enhancing the robustness and accuracy of the model.
@@ -452,11 +462,11 @@
          <div class="project-container">
             <div class="project-text">
                  <h3>Patient Role Player</h3>
-                 <div class="technologies">
-                     <i>ChatGPT</i>
-                     <div class="tech-divider"></div>
-                 </div>
-                <p>Patient Role Player is a GPT simulator. I created it to help me prepare for my PLAB 2 exam which requires great communication skills to address 
+                 <div class="tech-tags">
+                    <span class="tech-tag tech-tag-chatgpt">LLM</span>
+                </div>
+                <p>Patient Role Player is a GPT that simulates patient-doctor interaction. From the uploaded reference, it randomly picks a
+                    scenario from 390+ scenarios and 16 station types mimicking the actual PLAB 2 exam. I created it to help me prepare for my PLAB 2 exam which requires great communication skills to address 
                 different clinical scenarios. This helped me pass and ace my exam on first attempt.
                 </p>
             </div>
@@ -467,14 +477,11 @@
         <div class="project-container">
             <div class="project-text">
                 <h3>Basket: Personalized Learning App</h3>
-                <div class="technologies">
-                    <i>FlutterFlow</i>
-                    <div class="tech-divider"></div>
-                    <i>Supabase</i>
-                    <div class="tech-divider"></div>
-                    <i>Firebase</i>
-                    <div class="tech-divider"></div>
-                    <i>Python</i>
+                 <div class="tech-tags">
+                    <span class="tech-tag tech-tag-flutterflow">FlutterFlow</span>
+                    <span class="tech-tag tech-tag-supabase">Supabase</span>
+                    <span class="tech-tag tech-tag-firebase">Firebase</span>
+                    <span class="tech-tag tech-tag-python">Python</span>
                 </div>
                 <p><a href="https://basket.flutterflow.app" target="_blank">Basket</a> is a personalized learning app designed to help users retain difficult concepts for long exams by connecting them to familiar topics. This project is a culmination of my experiences with various study tools and my understanding of effective learning strategies.</p>
                 <p> Hit me up if you want:
@@ -491,12 +498,10 @@
         <div class="project-container">
             <div class="project-text">
                 <h3>Med Study Hacks Twitter</h3>
-                <div class="technologies">
-                    <i>Twitter</i>
-                    <div class="tech-divider"></div>
-                    <i>Content Creation</i>
-                    <div class="tech-divider"></div>
-                    <i>Social Media Marketing</i>
+                <div class="tech-tags">
+                    <span class="tech-tag tech-tag-twitter">Twitter</span>
+                    <span class="tech-tag tech-tag-content-creation">Content Creation</span>
+                    <span class="tech-tag tech-tag-social-media-marketing">Social Media Marketing</span>
                 </div>
                 <p>The Med Study Hacks Twitter account, currently rocking with 1600+ followers worldwide, is dedicated to sharing study tips, productivity hacks, and motivation for medical students and doctors (<i>recently students from accountancy and law have been following too!</i>). I curate and create content that helps students maximize their study efficiency and stay motivated throughout their medical education journey. Follow <a href="https://x.com/theokayestMS" target="_blank">Med Study Hacks</a> for infrequent insights and tips.</p>
             </div>
@@ -506,8 +511,8 @@
         <div class="project-container">
             <div class="project-text">
                 <h3>PLAB 2 Exam Tracker</h3>
-                <div class="technologies">
-                    <i>Notion</i>
+                <div class="tech-tags">
+                    <span class="tech-tag tech-tag-notion">Notion</span>
                 </div>
                 <p>I created a <a href="https://medstudyhack.notion.site/Basic-PLAB-2-Tracker-7c02426439884164959eba25ed0f5a31?pvs=4" target="_blank">PLAB 2 tracker</a> to help enhance productivity and organization when preparing for PLAB 2. This tracker has been invaluable in my PLAB 2 preparation.</p>
             </div>
@@ -516,11 +521,10 @@
         <div class="project-container">
             <div class="project-text">
                  <h3>Supabase Database Schema</h3>
-                 <div class="technologies">
-                     <i>Supabase</i>
-                     <div class="tech-divider"></div>
-                     <i>PostgreSQL</i>
-                 </div>
+                 <div class="tech-tags">
+                    <span class="tech-tag tech-tag-supabase">Supabase</span>
+                    <span class="tech-tag tech-tag-postgresql">PostgreSQL</span>
+                </div>
                  <p>For those interested in the technical aspects of Basket, here’s the current schema of the Supabase database:</p>
                  <ul>
                      <li>users table: users_id, email</li>
