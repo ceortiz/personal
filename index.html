@@ -793,7 +793,7 @@
         chatButton.style.display = 'block';
     });
 
-    // Add these new functions for the scroll animation
+            // Function to check if an element is in the viewport
         function isElementInViewport(el) {
             const rect = el.getBoundingClientRect();
             return (
@@ -803,21 +803,43 @@
                 rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         }
-
+        
+        // Function to handle scroll events
         function handleScroll() {
-            const tags = document.querySelectorAll('.tech-tag:not(.visible)');
+            const tags = document.querySelectorAll('.tech-tag');
             tags.forEach((tag, index) => {
                 if (isElementInViewport(tag)) {
-                    setTimeout(() => {
-                        tag.classList.add('visible');
-                    }, index * 100); // Stagger the animation
+                    if (!tag.classList.contains('visible')) {
+                        setTimeout(() => {
+                            tag.classList.add('visible');
+                        }, index * 100); // Stagger the animation
+                    }
+                } else {
+                    tag.classList.remove('visible');
                 }
             });
         }
-
-        // Add event listeners for scroll and load
-        window.addEventListener('scroll', handleScroll);
+        
+        // Debounce function to limit how often the scroll handler is called
+        function debounce(func, wait = 20, immediate = true) {
+            let timeout;
+            return function() {
+                const context = this, args = arguments;
+                const later = function() {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                };
+                const callNow = immediate && !timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+                if (callNow) func.apply(context, args);
+            };
+        }
+        
+        // Add event listeners
+        window.addEventListener('scroll', debounce(handleScroll));
         window.addEventListener('load', handleScroll);
+        
 
 
     </script>
